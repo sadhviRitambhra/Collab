@@ -1,0 +1,7 @@
+com\niit\RestController\FriendRequestController.class
+com\niit\RestController\forumMemberController.class
+com\niit\RestController\BlogCommentController.class
+com\niit\RestController\ForumCommentsController.class
+com\niit\RestController\ForumController.class
+com\niit\RestController\BlogController.class
+com\niit\RestController\UserController.class

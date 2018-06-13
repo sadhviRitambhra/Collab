@@ -1,0 +1,5 @@
+com\niit\testCases\BlogTestCase.class
+com\niit\testCases\UserTestCase.class
+com\niit\Collaboratebackend\AppTest.class
+com\niit\testCases\ForumTestCase.class
+com\niit\testCases\FriendRequestTestCase.class

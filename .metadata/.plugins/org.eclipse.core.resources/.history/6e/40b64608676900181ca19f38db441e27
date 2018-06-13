@@ -1,0 +1,26 @@
+package com.niit.RestController;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.niit.dao.ForumMemberDao;
+import com.niit.model.Forum;
+import com.niit.model.ForumMember;
+
+@RestController
+@RequestMapping("api")
+public class forumMemberController {
+@Autowired
+private ForumMemberDao forumMemberDao;
+@PostMapping(value = "/allForumMembers")
+public ResponseEntity<List<ForumMember>> getAllForumMember(@RequestBody ForumMember forumMember) {
+	return new ResponseEntity<List<ForumMember>>(HttpStatus.OK);
+}
+}

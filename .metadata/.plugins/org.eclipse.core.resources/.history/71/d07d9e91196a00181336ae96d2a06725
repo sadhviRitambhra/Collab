@@ -1,0 +1,84 @@
+package com.niit.RestController;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.niit.dao.BlogDao;
+import com.niit.model.Blog;
+import com.niit.model.User;
+
+@RestController
+@RequestMapping("api")
+public class BlogController {
+
+	@Autowired
+	private BlogDao blogDao;
+	
+	@PostMapping(value ="/allBlogs")
+	public ResponseEntity<List<Blog>> getAllBlogs(@RequestBody Blog blog) {
+		return new ResponseEntity<List<Blog>>(blogDao.getAllBlog(blog.getUserEmailid()), HttpStatus.OK);
+	}
+	@PostMapping("/newBlog")
+	public ResponseEntity<Blog> newBlog(@RequestBody Blog blog) {
+		boolean flag = blogDao.addBlog(blog);
+		if (flag) {
+			return new ResponseEntity<Blog>(blogDao.getBlogByName(blog.getBlogName()), HttpStatus.OK);
+		} 
+		
+		else {
+			return new ResponseEntity<Blog>(blog, HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@PostMapping("blog/update")
+	public ResponseEntity<Blog> updateBlog(@RequestBody Blog blog) {
+		boolean flag = blogDao.editBlog(blog);
+		if (flag) {
+			return new ResponseEntity<Blog>(blogDao.getBlogByName(blog.getUserEmailid()), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Blog>(blog, HttpStatus.BAD_REQUEST);
+		}
+	}
+ @GetMapping(value = "blog/{name}")
+	public ResponseEntity<Blog> getBlogByName(@PathVariable("name") String blogName, Blog blog) {
+		try {	blog = blogDao.getBlogById(Integer.parseInt(blogName));
+		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
+		
+		} catch (Exception e) {
+			blog = blogDao.getBlogByName(blogName);
+			return new ResponseEntity<Blog>(blog, HttpStatus.OK);
+		}
+	}
+
+	@DeleteMapping(value = "deleteBlog/{id}")
+	public ResponseEntity deleteBlog(@PathVariable("id") int blogId) {
+		blogDao.deleteBlog(blogId);
+		return new ResponseEntity(HttpStatus.NO_CONTENT);
+	}
+
+
+	@ExceptionHandler(IllegalArgumentException.class)
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Illegal request, please verify your payload")
+	public void handleClientErrors(Exception ex) {
+
+	}
+
+	@ExceptionHandler(Exception.class)
+	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Internal Server Error")
+	public void handleServerErrors(Exception ex) {
+
+	}
+}

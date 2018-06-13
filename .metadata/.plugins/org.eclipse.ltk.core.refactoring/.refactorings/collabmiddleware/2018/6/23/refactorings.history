@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.niit.RestController.ForumComments&apos; to &apos;ForumCommentsController&apos;&#x0D;&#x0A;- Original project: &apos;collabmiddleware&apos;&#x0D;&#x0A;- Original element: &apos;com.niit.RestController.ForumComments&apos;&#x0D;&#x0A;- Renamed element: &apos;com.niit.RestController.ForumCommentsController&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ForumComments&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;com.niit.RestController{ForumComments.java[ForumComments" matchStrategy="1" name="ForumCommentsController" qualified="false" references="true" similarDeclarations="false" stamp="1528281975243" textual="false" version="1.0"/>
+</session>

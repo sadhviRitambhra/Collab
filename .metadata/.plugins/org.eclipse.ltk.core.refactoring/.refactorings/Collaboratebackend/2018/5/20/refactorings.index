@@ -1,0 +1,11 @@
+1526289503374	Delete element
+1526289652177	Rename type 'BlogComment'
+1526289667192	Rename type 'ForumComments'
+1526289680184	Rename type 'FriendRequest'
+1526289695129	Rename type 'User'
+1526374626559	Move compilation unit
+1526374916466	Delete element
+1526375736270	Delete element
+1526377028643	Rename type 'blogTestCase'
+1526466083594	Rename resource 'FriendRequestTestCase.java'
+1526466129205	Rename resource 'ForumMemberTestCase.java'

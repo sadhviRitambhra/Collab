@@ -1,0 +1,13 @@
+1527503494368	Rename resource 'dispatcherServelet.xml'
+1527503518657	Move 'index.jsp' to 'views'
+1527503554284	Rename resource 'dispatcherservlet'
+1527503578337	Rename resource 'dispatcher-servlet'
+1527503622694	Move file
+1527503652159	Copy compilation unit
+1527503671851	Delete element
+1527503714024	Delete element
+1527503739866	Move file
+1527503752620	Delete element
+1527503831776	Rename package 'RestController'
+1527757890628	Rename type 'BlogRestController'
+1527757906781	Rename type 'UserRestController'

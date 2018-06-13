@@ -1,0 +1,62 @@
+package com.niit.RestController;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.niit.dao.ForumMemberDao;
+import com.niit.model.ForumMember;
+
+@RestController
+@RequestMapping("api")
+public class forumMemberController {
+	@Autowired
+	ForumMemberDao forumMemberDao;
+	   @GetMapping(value="allForumMember/{id}")
+		public ResponseEntity<List<ForumMember>> getAllMember(@PathVariable("id") int id){
+			
+			
+			List<ForumMember> allForumMember= forumMemberDao.getAllMembersByForumId(id);
+			
+			return new ResponseEntity<List<ForumMember>>(allForumMember, HttpStatus.OK); 
+			
+		}
+	   @PostMapping(value="newForumMember")
+	   public ResponseEntity<List<ForumMember>> newForumMember(@RequestBody ForumMember forumMember){
+		   forumMemberDao.addForumMember(forumMember);
+		return new ResponseEntity<List<ForumMember>>(forumMemberDao.getAllMembersByForumId(forumMember.getForumId()),HttpStatus.OK);   
+	   }
+	   
+	   @PostMapping(value="editForumMember")
+	   public ResponseEntity<Boolean> editForumMember(@RequestBody  ForumMember member){
+		   boolean flag =forumMemberDao.editForumMember(member);
+		   return new ResponseEntity<Boolean>(flag, HttpStatus.OK);
+	   }
+	   
+	   @DeleteMapping(value="deleteForumMember/{id}")
+	  public ResponseEntity<ForumMember> deleteForumMember(@PathVariable("id") String id){
+		  
+		  forumMemberDao.deleteForumMember(id);
+		  return new ResponseEntity<ForumMember>(HttpStatus.OK);
+		  
+	  }
+		@GetMapping(value="forumMember/{emailid}")
+	   public ResponseEntity<ForumMember> getMemberByEmailId(@PathVariable("emailid") String emailid){
+		
+		  return new ResponseEntity<ForumMember>(forumMemberDao.getMemberByEmailId(emailid),HttpStatus.OK);
+		   
+		   
+	   }
+	   
+		
+	}

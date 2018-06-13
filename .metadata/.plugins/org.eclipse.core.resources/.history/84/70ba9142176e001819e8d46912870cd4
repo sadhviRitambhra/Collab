@@ -1,0 +1,54 @@
+package com.niit.RestController;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.niit.dao.FriendRequestDao;
+import com.niit.model.ForumMember;
+import com.niit.model.FriendRequest;
+
+@RestController
+@RequestMapping("api")
+public class FriendRequestController {
+@Autowired
+private FriendRequest friendRequest;
+@Autowired
+private FriendRequestDao friendRequestDao;
+@PostMapping("/sendRequest")
+public ResponseEntity<FriendRequest> sendRequest(@RequestBody FriendRequest request){
+	
+	
+	return new ResponseEntity<FriendRequest>(friendRequestDao.sendRequest(request), HttpStatus.OK);
+}
+
+@PostMapping("/allFriendRequest")
+public ResponseEntity<List<FriendRequest>> allFriends(@RequestBody FriendRequest friendRequest){
+	
+	return new ResponseEntity<List<FriendRequest>>(friendRequestDao.allFriends(friendRequest.getFromEmailId()), HttpStatus.OK);
+	
+}
+@PostMapping("/editRequest")
+public ResponseEntity<FriendRequest> editRequest(@RequestBody FriendRequest request){
+	
+	
+	return new ResponseEntity<FriendRequest>(friendRequestDao.editRequest(request), HttpStatus.OK);
+}
+@GetMapping("/getFriendRequest/{id}")
+public ResponseEntity<FriendRequest> getrequestById(@PathVariable("id") int id){
+	
+	return new ResponseEntity<FriendRequest>(friendRequestDao.getrequestById(id), HttpStatus.OK);
+	
+	
+	
+	
+}
+}

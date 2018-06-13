@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Wed Jun 13 11:33:00 IST 2018
+org.eclipse.jst.j2ee.server\:Collaboratebackend=WEB-INF/lib/Collaboratebackend-0.0.1-SNAPSHOT.jar
+org.eclipse.jst.j2ee.server\:/binary\:C\:\\Users\\home\\.m2\\repository\\org\\springframework\\spring-web\\5.0.5.RELEASE\\spring-web-5.0.5.RELEASE.jar=WEB-INF/lib/spring-web-5.0.5.RELEASE.jar
